@@ -1,0 +1,16 @@
+elemental:
+    registration:
+        url: https://[redacted].sslip.io/elemental/registration/mkltqmf9rd2lrqfc6h9r79cncncc2v28xgk7584wlr6t29ss8hw5z5
+        ca-cert: |-
+            -----BEGIN CERTIFICATE-----
+            MIIBvDCCAWOgAwIBAgIBADAKBggqhkjOPQQDAjBGMRwwGgYDVQQKExNkeW5hbWlj
+            bGlzdGVuZXItb3JnMSYwJAYDVQQDDB1keW5hbWljbGlzdGVuZXItY2FAMTcyMjIy
+            NzU2NzAeFw0yNDA3MjkwNDMyNDdaFw0zNDA3MjcwNDMyNDdaMEYxHDAaBgNVBAoT
+            E2R5bmFtaWNsaXN0ZW5lci1vcmcxJjAkBgNVBAMMHWR5bmFtaWNsaXN0ZW5lci1j
+            YUAxNzIyMjI3NTY3MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHpdklWkZYyO8
+            oUBk2stNs8ZvxkLeadKbxveLZZUoFl3QJvya56Cyf4zcrnxHrag++uY1luPm2e1p
+            od+7PkuRw6NCMEAwDgYDVR0PAQH/BAQDAgKkMA8GA1UdEwEB/wQFMAMBAf8wHQYD
+            VR0OBBYEFNNEpmHfWh0Q+lkmgw5uF/uizsBSMAoGCCqGSM49BAMCA0cAMEQCIEMc
+            6+TBWibHktkYLOglfWLo9yktIzI6jCZ1/QA8RHduAiBvuVZf4RXiNCke32XObKYu
+            TLhyqXqO+8mN/zf9Nbjkew==
+            -----END CERTIFICATE-----

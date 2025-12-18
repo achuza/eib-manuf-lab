@@ -1,0 +1,29 @@
+# Base values for Ignition with Traefik Ingress
+
+commissioning:
+  acceptIgnitionEULA: true
+  edition: "standard"
+
+gateway:
+  resources:
+    limits:
+      cpu: 2000m
+      memory: 4Gi
+    requests:
+      cpu: 500m
+      memory: 2Gi
+
+  dataVolumeStorageSize: 10Gi
+
+  publicAddress:
+    host: ignition-192.168.64.14.sslip.io
+    http: 80
+    https: 443
+
+service:
+  type: ClusterIP
+
+ingress:
+  enabled: true
+  className: traefik
+  hostOverride: ignition-192.168.64.14.sslip.io

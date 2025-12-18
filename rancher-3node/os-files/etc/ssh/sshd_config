@@ -1,0 +1,3 @@
+# Enable root login over SSH
+UsePAM yes
+PermitRootLogin yes

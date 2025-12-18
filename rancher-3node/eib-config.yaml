@@ -1,0 +1,87 @@
+apiVersion: 1.1
+image:
+  imageType: iso 
+  arch: aarch64
+  baseImage: sl62.iso
+  outputImageName: rancher-3node-aarch64-6.2.iso
+operatingSystem:
+  isoConfiguration:
+    installDevice: /dev/vda
+  users:
+  - username: root
+    encryptedPassword: "$6$DIL3SYTayoaM13GP$zAfXEofZd154Wuuj.fMqJXKd2p8fieu75zLgta6dWz7rCHsxw0x4CcFjLH3V5Dy4sQKN9/VotNS9E37RYRTeD."
+kubernetes:
+  version: v1.33.6+k3s1 #v1.31.3+rke2r1
+  network:
+    apiHost: 192.168.64.10.sslip.io
+    apiVIP: 192.168.64.10
+  nodes:
+    - hostname: node1.suse.com
+      type: server
+      initializer: true
+    - hostname: node2.suse.com
+      type: server
+    - hostname: node3.suse.com
+      type: server
+  helm:
+    charts:
+      - name: cert-manager
+        version: 1.14.2
+        repositoryName: jetstack
+        targetNamespace: cert-manager
+        createNamespace: true
+        installationNamespace: kube-system
+        valuesFile: certmanager.yaml
+      - name: rancher
+        version: 2.12.4
+        repositoryName: rancher-prime
+        targetNamespace: cattle-system
+        createNamespace: true
+        installationNamespace: kube-system
+        valuesFile: rancher.yaml
+      - name: kubevirt
+        version: 304.0.1+up0.6.0
+        repositoryName: suse-edge
+        targetNamespace: kubevirt-system
+        createNamespace: true
+        installationNamespace: kube-system
+      - name: cdi
+        version: 304.0.1+up0.6.0
+        repositoryName: suse-edge
+        targetNamespace: cdi-system
+        createNamespace: true
+        installationNamespace: kube-system
+      - name: agent
+        version: 0.1.0
+        repositoryName: rancher-ai
+        targetNamespace: cattle-ai-agent-system
+        createNamespace: true
+        installationNamespace: kube-system
+        valuesFile: rancheragentai.yaml
+      - name: ignition
+        version: 0.2.0
+        repositoryName: inductiveautomation
+        targetNamespace: ia-igntion
+        createNamespace: true
+        installationNamespace: kube-system
+        valuesFile: ia-ignition.yaml
+      # - name: rancher-ai-ui
+      #   version: 0.1.12
+      #   repositoryName: rancher-ai-ui
+      #   targetNamespace: cattle-ui-plugin-system
+      #   createNamespace: true
+      #   installationNamespace: kube-system
+
+    repositories:
+      - name: jetstack
+        url: https://charts.jetstack.io
+      - name: rancher-prime
+        url: https://charts.rancher.com/server-charts/prime
+      - name: suse-edge
+        url: oci://registry.suse.com/edge/charts
+      - name: rancher-ai
+        url: https://rancher-sandbox.github.io/rancher-ai-agent
+      - name: inductiveautomation
+        url: https://charts.ia.io
+      # - name: rancher-ai-ui
+      #   url: https://rancher-sandbox.github.io/rancher-ai-ui
