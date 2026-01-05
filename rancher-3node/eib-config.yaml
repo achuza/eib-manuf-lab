@@ -11,7 +11,7 @@ operatingSystem:
   - username: root
     encryptedPassword: "$6$DIL3SYTayoaM13GP$zAfXEofZd154Wuuj.fMqJXKd2p8fieu75zLgta6dWz7rCHsxw0x4CcFjLH3V5Dy4sQKN9/VotNS9E37RYRTeD."
   packages:
-    sccRegistrationCode: INTERNAL-USE-ONLY-c07d-02bc
+    sccRegistrationCode: <input-before-build> # This is needed to install packages. 
     packageList:
       - open-iscsi
 kubernetes:
@@ -99,8 +99,6 @@ kubernetes:
         url: https://charts.jetstack.io
       - name: rancher-stable
         url: https://releases.rancher.com/server-charts/stable
-      # - name: rancher-prime
-      #   url: https://charts.rancher.com/server-charts/prime
       - name: suse-edge
         url: oci://registry.suse.com/edge/charts
       - name: rancher-ai
