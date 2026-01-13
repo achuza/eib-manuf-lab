@@ -1,3 +1,5 @@
 **/_build/
 **/base-images/
 *.iso
+.DS_Store
+*.raw
