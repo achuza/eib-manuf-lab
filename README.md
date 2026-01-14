@@ -100,6 +100,13 @@ Navigate to the rancher-3node directory:
 cd rancher-3node
 ```
 
+Create base images folder:
+
+```bash
+mkdir base-images
+```
+
+
 Place your downloaded base image in the same directory and rename it:
 
 ```bash

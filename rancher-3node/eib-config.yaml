@@ -2,7 +2,7 @@ apiVersion: 1.3
 image:
   imageType: iso 
   arch: aarch64
-  baseImage: sl62.iso
+  baseImage: SL-Micro.aarch64-6.2-Default-SelfInstall-GM.install.iso
   outputImageName: rancher-3node-aarch64-6.2.iso
 operatingSystem:
   isoConfiguration:
@@ -11,7 +11,7 @@ operatingSystem:
   - username: root
     encryptedPassword: "$6$DIL3SYTayoaM13GP$zAfXEofZd154Wuuj.fMqJXKd2p8fieu75zLgta6dWz7rCHsxw0x4CcFjLH3V5Dy4sQKN9/VotNS9E37RYRTeD."
   packages:
-    sccRegistrationCode: INTERNAL-USE-ONLY-c07d-02bc # This is needed to install packages. 
+    sccRegistrationCode: <SCC> # This is needed to install packages. 
     packageList:
       - open-iscsi
 kubernetes:
@@ -93,6 +93,20 @@ kubernetes:
         targetNamespace: longhorn-system
         createNamespace: true
         installationNamespace: kube-system
+      - name: neuvector-crd
+        version: 107.0.3+up2.8.10
+        repositoryName: rancher-charts
+        targetNamespace: neuvector
+        createNamespace: true
+        installationNamespace: kube-system
+        valuesFile: neuvector-values.yaml
+      - name: neuvector
+        version: 107.0.3+up2.8.10
+        repositoryName: rancher-charts
+        targetNamespace: neuvector
+        createNamespace: true
+        installationNamespace: kube-system
+        valuesFile: neuvector-values.yaml
 
     repositories:
       - name: jetstack
@@ -102,10 +116,12 @@ kubernetes:
       - name: suse-edge
         url: oci://registry.suse.com/edge/charts
       - name: rancher-ai
-        url: https://rancher-sandbox.github.io/rancher-ai-agent
+        url: https://rancher.github.io/rancher-ai-agent/
       - name: inductiveautomation
         url: https://charts.ia.io
       - name: rancher-ai-ui
-        url: https://rancher-sandbox.github.io/rancher-ai-ui
+        url: https://rancher.github.io/rancher-ai-ui
       - name: longhorn
         url: https://charts.rancher.io
+      - name: rancher-charts
+        url: https://charts.rancher.io/
