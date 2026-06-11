@@ -1,0 +1,48 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: suse-psql
+  namespace: db-production
+spec:
+  instances: 3
+  imageName: registry.suse.com/suse/postgres:18
+
+  postgresUID: 999
+  postgresGID: 999
+
+  podSecurityContext:
+    runAsUser: 999
+    runAsGroup: 999
+    fsGroup: 999
+    runAsNonRoot: true
+
+  affinity:
+    enablePodAntiAffinity: true
+    topologyKey: kubernetes.io/hostname
+    podAntiAffinityType: preferred
+
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "250m"
+    limits:
+      memory: "2Gi"
+
+  minSyncReplicas: 1
+  maxSyncReplicas: 1
+
+  managed:
+    services:
+      additional:
+        - selectorType: rw
+          serviceTemplate:
+            metadata:
+              name: suse-psql-external
+              labels:
+                app: suse-psql-ha
+            spec:
+              type: LoadBalancer
+
+  storage:
+    size: 20Gi
+    storageClass: longhorn-replicated-2

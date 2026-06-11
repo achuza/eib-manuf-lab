@@ -71,6 +71,12 @@ kubernetes:
       #   targetNamespace: cattle-ui-plugin-system
       #   createNamespace: true
       #   installationNamespace: kube-system
+      - name: cloudnative-pg
+        version: 0.28.2
+        repositoryName: cnpg-repo
+        targetNamespace: cnpg-system
+        createNamespace: true
+        installationNamespace: kube-system
 
     repositories:
       - name: jetstack
@@ -85,3 +91,9 @@ kubernetes:
         url: https://charts.ia.io
       # - name: rancher-ai-ui
       #   url: https://rancher-sandbox.github.io/rancher-ai-ui
+      - name: cnpg-repo
+        url: https://cloudnative-pg.github.io/charts
+embeddedArtifactRegistry:
+  images:
+    - name: registry.suse.com/suse/postgres:18
+    - name: ghcr.io/cloudnative-pg/cloudnative-pg:1.29.1

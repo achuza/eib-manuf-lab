@@ -1,0 +1,23 @@
+# Database Pool — paired with the CNPG suse-psql LoadBalancer service
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: postgres-ippool
+  namespace: metallb-system
+spec:
+  addresses:
+  - 192.168.64.15/32
+  serviceAllocation:
+    priority: 100
+    serviceSelectors:
+    - matchLabels:
+        app: suse-psql-ha
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: postgres-l2-adv
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+  - postgres-ippool
