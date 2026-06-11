@@ -1,0 +1,18 @@
+controller:
+  replicas: 1
+manager:
+  enabled: false
+cve:
+  scanner:
+    enabled: false
+    replicas: 1
+k3s:
+  enabled: true
+crdwebhook:
+  enabled: false
+service:
+  type: ClusterIP
+ingress:
+  enabled: true
+  className: traefik
+  hostOverride: security-192.168.64.14.sslip.io

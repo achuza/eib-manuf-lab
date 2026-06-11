@@ -1,5 +1,3 @@
-# Base values for Ignition with Traefik Ingress
-
 commissioning:
   acceptIgnitionEULA: true
   edition: "standard"
